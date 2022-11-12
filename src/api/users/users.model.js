@@ -7,10 +7,8 @@ const userSchema = new Schema(
   {
     email: { type: String, required: true, unique: true, trim: true},
     password: { type: String, required: true, trim: true},
-    age: { type: String, required: true },
-    firstName: { type: String, required: true, trim: true},
-    lastName: { type: String, required: true, trim: true},
-    photo: { type: String, required: false, trim: true},
+    username: { type: String, required: true, trim: true},
+    // photo: { type: String, required: false, trim: true},
   },
   {
     timestamps: true,

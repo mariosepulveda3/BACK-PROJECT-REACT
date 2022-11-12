@@ -15,7 +15,7 @@ const isAuth = async (req, res, next) => {
     req.user = userLogged;
     next();
   } catch (error) {
-    return next("No puedes acceder");
+    return next("You cannot access");
   }
 };
 

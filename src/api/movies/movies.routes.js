@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
     const allMovies = await Movie.find();
     return res.status(200).json(allMovies);
   } catch (error) {
-    return res.status(500).json("Error en el servidor");
+    return res.status(500).json("Server error");
   }
 });
 
@@ -45,7 +45,7 @@ router.post("/create", upload.single("img"), async (req, res) => {
     const created = await newMovie.save();
     return res.status(201).json(created);
   } catch (error) {
-    return res.status(500).json("Error al crear película");
+    return res.status(500).json("Error creating movie");
   }
 });
 
@@ -66,7 +66,7 @@ router.put("/edit/:id", upload.single("img"), async (req, res) => {
     const movieUpdated = await Movie.findByIdAndUpdate(id, movieModify);
     return res.status(201).json(movieUpdated);
   } catch (error) {
-    return res.status(500).json("Error al editar película");
+    return res.status(500).json("Error editing movie");
   }
 });
 
@@ -76,9 +76,9 @@ router.delete("/delete/:id", async (req, res) => {
     const movieToDelete = await Movie.findByIdAndDelete(id);
     return res
       .status(200)
-      .json("Se ha conseguido eliminar la película correctamente");
+      .json("Movie deleted correctly");
   } catch (error) {
-    return res.status(500).json("No se ha conseguido eliminar la película");
+    return res.status(500).json("Could not delete movie");
   }
 });
 

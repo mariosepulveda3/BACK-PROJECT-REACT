@@ -7,7 +7,7 @@ const deleteFile = (imgUrl) => {
     const public_id = `${folderSplited}/${nameSplited}`;
 
     cloudinary.uploader.destroy(public_id, () => {
-        console.log('Se ha eliminada correctamente la película');
+        console.log('Movie deleted correctly');
     })
 }
 

@@ -62,4 +62,13 @@ router.delete("/delete/:name", async (req, res) => {
   }
 });
 
+router.post('/checkSession', [isAuth], async (req, res) => {
+  try {
+    const user = req.user;
+    return res.status(200).json(user)
+  } catch (error) {
+    return res.status(500).json("Problem checking session");
+  }
+})
+
 module.exports = router;

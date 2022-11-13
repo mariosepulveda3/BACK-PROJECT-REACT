@@ -42,7 +42,7 @@ server.use('/movies', moviesRoutes);
 server.use('/users', userRoutes);
 
 server.use('*', (req, res) => {
-    const error = new Error('Ruta no encontrada!');
+    const error = new Error('Rout not found');
     error.status = 404;
     return res.status(error.status).json(error.message);
 });
@@ -53,6 +53,6 @@ server.use((error, req, res, next) => {
 
 // Arrancamos el servidor
 server.listen(PORT, () => {
-    console.log(`Servidor funcionando correctamente en http://localhost:${PORT}`);
+    console.log(`Server running correctly in http://localhost:${PORT}`);
 });
 

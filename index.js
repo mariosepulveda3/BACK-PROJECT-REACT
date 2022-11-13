@@ -42,7 +42,7 @@ server.use('/movies', moviesRoutes);
 server.use('/users', userRoutes);
 
 server.use('*', (req, res) => {
-    const error = new Error('Rout not found');
+    const error = new Error('Route not found');
     error.status = 404;
     return res.status(error.status).json(error.message);
 });

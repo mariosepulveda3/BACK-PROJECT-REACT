@@ -5,7 +5,7 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const storage = new CloudinaryStorage ({
     cloudinary: cloudinary,
     params: {
-        folder: 'Expediente Warren',
+        folder: 'Proyecto React Movies',
         allowedFormats: ['jpg', 'png', 'jpeg', 'gif']
     }
 })

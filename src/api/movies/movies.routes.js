@@ -45,7 +45,7 @@ router.post("/create", upload.single("img"), async (req, res) => {
     const created = await newMovie.save();
     return res.status(201).json(created);
   } catch (error) {
-    return res.status(500).json("Error creating movie");
+    return res.status(500).json(error);
   }
 });
 

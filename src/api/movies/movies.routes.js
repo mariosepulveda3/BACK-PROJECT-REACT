@@ -58,8 +58,6 @@ router.put("/edit/:id", [isAdmin], upload.single("img"), async (req, res) => {
 
     if (req.file) {
       deleteFile(movieOld.img);
-      {
-      }
       movie.img = req.file.path;
     }
     const movieModify = new Movie(req.body);

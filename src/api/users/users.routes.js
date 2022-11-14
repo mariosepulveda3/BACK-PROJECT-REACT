@@ -3,7 +3,7 @@ const User = require("./users.model");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const { generateSign } = require("../../utils/jwt/jwt");
-const { isAuth } = require("../../middlewares/auth");
+const { isAuth, isAdmin } = require("../../middlewares/auth");
 
 router.get("/", [isAuth], async (req, res) => {
   try {
@@ -18,8 +18,14 @@ router.post("/postNewUser", async (req, res) => {
   try {
     const user = req.body;
     const newUser = new User(user);
-    const created = await newUser.save();
-    return res.status(201).json(created);
+    if (newUser.rol === "user") {
+      const created = await newUser.save();
+      return res.status(201).json(created);
+    } else {
+      return res
+        .status(500)
+        .json("You are not authorized to be an admin.");
+    }
   } catch (error) {
     return res.status(500).json("Error creating user");
   }
@@ -52,7 +58,7 @@ router.post("/logout/:name", async (req, res) => {
 });
 
 
-router.delete("/delete/:name", async (req, res) => {
+router.delete("/delete/:name", [isAdmin], async (req, res) => {
   try {
     const name = req.params.name;
     const userToDelete = await User.findOne(name);

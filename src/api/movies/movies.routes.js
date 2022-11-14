@@ -2,6 +2,7 @@ const express = require("express");
 const Movie = require("./movies.model");
 const upload = require("../../middlewares/file");
 const { deleteFile } = require("../../middlewares/deleteFile");
+const { isAdmin } = require("../../middlewares/auth");
 
 const router = express.Router();
 
@@ -35,7 +36,7 @@ router.get("/title/:title", async (req, res) => {
 });
 
 // metemos dentro de upload.single, el campo model en la que va la imagen
-router.post("/create", upload.single("img"), async (req, res) => {
+router.post("/create", [isAdmin], upload.single("img"), async (req, res) => {
   try {
     const movie = req.body;
     if (req.file) {
@@ -49,7 +50,7 @@ router.post("/create", upload.single("img"), async (req, res) => {
   }
 });
 
-router.put("/edit/:id", upload.single("img"), async (req, res) => {
+router.put("/edit/:id", [isAdmin], upload.single("img"), async (req, res) => {
   try {
     const id = req.params.id;
     const movie = req.body;
@@ -70,7 +71,7 @@ router.put("/edit/:id", upload.single("img"), async (req, res) => {
   }
 });
 
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", [isAdmin], async (req, res) => {
   try {
     const id = req.params.id;
     const movieToDelete = await Movie.findByIdAndDelete(id);

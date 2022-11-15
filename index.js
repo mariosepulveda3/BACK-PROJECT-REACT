@@ -60,6 +60,6 @@ server.use((error, req, res, next) => {
 
 // Arrancamos el servidor
 server.listen(PORT, () => {
-    console.log(`Server running correctly in http://localhost:${PORT}`);
+    console.log('Server running correctly');
 });
 
